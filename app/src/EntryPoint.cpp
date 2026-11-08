@@ -1,18 +1,12 @@
 import std;
-import nlohmann.json;
-
-std::string testJson() {
-  auto j = nlohmann::json::parse(R"({"a": [1,2,3]})");
-  return j.dump();
-}
 
 int main() {
-  std::print("{}\n", testJson());
-  // parse json
-  // build graph
-  // ??
-  // simulate
-  // output
+  // works as server binary
+  // after relevant setup it will
+  // listen for requests and handle them accordingly
+  // the runner from core library will handle simulation
+  // and have calls that repot progress
+  // server should be lightweight and decline multiple runners
 
   return 0;
 }

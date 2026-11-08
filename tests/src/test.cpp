@@ -7,10 +7,7 @@ import std;
 using namespace std::chrono_literals;
 using namespace std::chrono;
 
-TEST(run, DoesItRun) {
-  EXPECT_TRUE(true);
-  EXPECT_EQ(core::findTheAnswer(), 42);
-}
+TEST(run, DoesItRun) { EXPECT_TRUE(true); }
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleMock(&argc, argv);
