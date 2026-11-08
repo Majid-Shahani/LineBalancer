@@ -8,9 +8,16 @@ target_compile_definitions(core
   PRIVATE
     ${b_platform}
     ${b_arch}
+    # json parser modules
+    NLOHMANN_JSON_BUILD_MODULES
 )
 
-target_link_libraries(core PUBLIC $<$<CXX_COMPILER_ID:GNU>:stdc++exp>)
+target_link_libraries(core
+  PUBLIC
+    $<$<CXX_COMPILER_ID:GNU>:stdc++exp>
+  PRIVATE
+    $<BUILD_INTERFACE:nlohmann_json_modules>
+)
 
 target_sources(core
   PUBLIC
