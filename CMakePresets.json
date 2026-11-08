@@ -20,7 +20,7 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_CXX_FLAGS": "-Wno-interference-size",
-        "CMAKE_EXE_LINKER_FLAGS": "-lmcfgthread -lstdc++exp"
+        "CMAKE_EXE_LINKER_FLAGS": "-lstdc++exp"
       }
     }
   ]
