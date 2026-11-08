@@ -12,19 +12,19 @@ target_compile_definitions(app
 )
 
 target_sources(app
-	PRIVATE
-	 FILE_SET SOURCES
-	 BASE_DIRS src
-	 FILES
-	   src/EntryPoint.cpp
+ PRIVATE
+  FILE_SET SOURCES
+  BASE_DIRS src
+  FILES
+    src/EntryPoint.cpp
 )
 
 target_link_libraries(app
   PRIVATE
-	  core
+   core
 )
 
 install(
-	TARGETS app
-	EXPORT TemplateTargets
+ TARGETS app
+  EXPORT LineBalancerTargets
 )

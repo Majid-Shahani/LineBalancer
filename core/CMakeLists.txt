@@ -34,7 +34,7 @@ target_sources(core
 
 install(TARGETS
   core
-  EXPORT TemplateTargets
+  EXPORT LineBalancerTargets
   FILE_SET HEADERS
   FILE_SET CXX_MODULES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 4.4.0)
 
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "f35a9ac6-8463-4d38-8eec-5d6008153e7d")
-project(starter_template LANGUAGES CXX VERSION 1.0.0)
+project(line_balancer LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -60,20 +60,20 @@ endif()
 
 # Install
 install(
-  EXPORT TemplateTargets
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Template
-  NAMESPACE Template::
+  EXPORT LineBalancerTargets
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LineBalancer
+  NAMESPACE LineBalancer::
 )
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-  ${CMAKE_CURRENT_BINARY_DIR}/TemplateConfigVersion.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/LineBalancerConfigVersion.cmake
   COMPATIBILITY SameMajorVersion
 )
 
 install(
   FILES
-    cmake/TemplateConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/TemplateConfigVersion.cmake
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Template
+    cmake/LineBalancerConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/LineBalancerConfigVersion.cmake
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/LineBalancer
 )
