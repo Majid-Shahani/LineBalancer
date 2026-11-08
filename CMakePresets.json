@@ -1,0 +1,27 @@
+{
+  "version": 9,
+  "cmakeMinimumRequired": {
+    "major": 4,
+    "minor": 4,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "default",
+      "displayName": "default preset",
+      "description": "",
+      "binaryDir": "${sourceDir}/build",
+      "installDir": "${sourceDir}/install",
+      "generator": "Ninja Multi-Config"
+    },
+    {
+      "name": "gcc",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_CXX_FLAGS": "-Wno-interference-size",
+        "CMAKE_EXE_LINKER_FLAGS": "-lmcfgthread -lstdc++exp"
+      }
+    }
+  ]
+}
