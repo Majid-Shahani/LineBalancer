@@ -21,7 +21,7 @@ target_sources(tests
 
 target_link_libraries(tests
   PRIVATE
-    core
+    simulator
     GTest::gmock
 )
 
