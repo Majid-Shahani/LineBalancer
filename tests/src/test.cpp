@@ -1,7 +1,7 @@
 #include <gmock/gmock.h>
 #include <immintrin.h>
 
-import core;
+import LineSimulator;
 import std;
 
 using namespace std::chrono_literals;

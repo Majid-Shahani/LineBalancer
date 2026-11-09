@@ -47,8 +47,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   target_compile_options(nlohmann_json_modules PRIVATE -Wno-expose-global-module-tu-local)
 endif()
 
-add_subdirectory(core)
-add_subdirectory(app)
+add_subdirectory(simulator)
+add_subdirectory(server)
 
 # Tests
 if (BUILD_TESTING)

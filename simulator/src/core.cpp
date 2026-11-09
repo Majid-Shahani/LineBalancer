@@ -2,6 +2,4 @@ module LineSimulator;
 
 namespace LS {
 
-}
-
-} // namespace core
+} // namespace LS
