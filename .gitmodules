@@ -4,3 +4,6 @@
 [submodule "vendor/json"]
 	path = vendor/json
 	url = git@github.com:nlohmann/json.git
+[submodule "vendor/cpp-httplib"]
+	path = vendor/cpp-httplib
+	url = git@github.com:yhirose/cpp-httplib.git

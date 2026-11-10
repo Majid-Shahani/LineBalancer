@@ -43,9 +43,10 @@ set(JSON_Install    OFF CACHE INTERNAL "")
 set(NLOHMANN_JSON_BUILD_MODULES ON CACHE INTERNAL "")
 add_subdirectory(vendor/json EXCLUDE_FROM_ALL)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(nlohmann_json_modules PRIVATE -Wno-expose-global-module-tu-local)
-endif()
+# cpp-httplib
+set(HTTPLIB_COMPILE ON CACHE INTERNAL "")
+set(HTTPLIB_BUILD_MODULES ON CACHE INTERNAL "")
+add_subdirectory(vendor/cpp-httplib)
 
 add_subdirectory(simulator)
 add_subdirectory(server)

@@ -22,6 +22,7 @@ target_sources(server
 target_link_libraries(server
   PRIVATE
     simulator
+    httplib::httplib
 )
 
 install(
