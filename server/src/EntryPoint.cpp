@@ -1,3 +1,4 @@
+import LineSimulator;
 import std;
 
 int main() {
@@ -7,6 +8,5 @@ int main() {
   // the runner from core library will handle simulation
   // and have calls that repot progress
   // server should be lightweight and decline multiple runners
-
   return 0;
 }

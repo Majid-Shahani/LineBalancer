@@ -1,6 +1,6 @@
 export module LineSimulator;
 
 // LineSimulator namespace
-namespace LS {
+export namespace LS {
 
 } // namespace LS
