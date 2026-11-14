@@ -4,19 +4,19 @@ import std;
 
 namespace {
 
-httplib::SSLServer g_srv{"cert.pem", "key.pem"};
+httplib::SSLServer g_Srv{"cert.pem", "key.pem"};
 
 void setupServerSettings() {
-  g_srv.new_task_queue = [] {
+  g_Srv.new_task_queue = [] {
     return new httplib::ThreadPool(2, 4); // 2 minimum, 4 maximum
   };
-  g_srv.set_keep_alive_max_count(0); // unlimited requests per tcp handshake
-  g_srv.set_keep_alive_timeout(5);   // in seconds
+  g_Srv.set_keep_alive_max_count(0); // unlimited requests per tcp handshake
+  g_Srv.set_keep_alive_timeout(5);   // in seconds
 }
 
 void setupExecutable() {
   auto stop{[](int) {
-    g_srv.stop();
+    g_Srv.stop();
     std::print("\nServer Stopping.\n");
   }};
   std::signal(15, stop); // SIGTERM
@@ -26,19 +26,19 @@ void setupExecutable() {
 } // namespace
 
 int main() {
-  setupServerSettings();
   setupExecutable();
+  setupServerSettings();
 
-  g_srv.Get("/", [](const auto& req, auto& res) {
+  g_Srv.Get("/", [](const auto& req, auto& res) {
     res.set_content(req.body, "text/plain");
     res.status = 200;
   });
-  g_srv.Get("/simulation", [](const auto&, auto& res) {
+  g_Srv.Get("/simulation", [](const auto&, auto& res) {
     res.set_content("no simulation in progress!", "text/plain");
     res.status = 200;
   });
 
-  g_srv.listen("localhost", 8443);
+  g_Srv.listen("localhost", 8443);
 
   /*
   LS::Runner runner;
