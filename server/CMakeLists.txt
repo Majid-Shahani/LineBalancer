@@ -5,6 +5,18 @@ set_target_properties(server
     CXX_MODULE_STD ON
 )
 
+if (HTTPLIB_REQUIRE_OPENSSL)
+  target_compile_definitions(server
+    PRIVATE
+      CPPHTTPLIB_OPENSSL_SUPPORT
+  )
+  target_link_libraries(server
+    PRIVATE
+      ssl
+      crypto
+)
+endif()
+
 target_compile_definitions(server
   PRIVATE
     ${b_platform}
