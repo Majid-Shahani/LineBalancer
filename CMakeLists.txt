@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 4.4.0)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "f35a9ac6-8463-4d38-8eec-5d6008153e7d")
+
 project(line_balancer LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -46,6 +48,7 @@ add_subdirectory(vendor/json EXCLUDE_FROM_ALL)
 # cpp-httplib
 set(HTTPLIB_COMPILE ON CACHE INTERNAL "")
 set(HTTPLIB_BUILD_MODULES ON CACHE INTERNAL "")
+set(HTTPLIB_REQUIRE_OPENSSL ON CACHE INTERNAL "")
 add_subdirectory(vendor/cpp-httplib)
 
 add_subdirectory(simulator)

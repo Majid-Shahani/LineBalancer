@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 12,
   "cmakeMinimumRequired": {
     "major": 4,
     "minor": 4,
@@ -12,7 +12,10 @@
       "description": "",
       "binaryDir": "${sourceDir}/build",
       "installDir": "${sourceDir}/install",
-      "generator": "Ninja Multi-Config"
+      "generator": "Ninja Multi-Config",
+      "warnings": {
+        "experimental": false
+      }
     },
     {
       "name": "gcc",
@@ -21,6 +24,14 @@
         "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_CXX_FLAGS": "-Wno-interference-size",
         "CMAKE_EXE_LINKER_FLAGS": "-lstdc++exp"
+      }
+    },
+    {
+      "name": "clang",
+      "inherits": "default",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_CXX_FLAGS": "-Wno-reserved-module-identifier"
       }
     }
   ]
