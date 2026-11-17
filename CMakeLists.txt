@@ -43,13 +43,20 @@ endif()
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 set(JSON_Install    OFF CACHE INTERNAL "")
 set(NLOHMANN_JSON_BUILD_MODULES ON CACHE INTERNAL "")
-add_subdirectory(vendor/json EXCLUDE_FROM_ALL)
+add_subdirectory(vendor/json)
+install(FILES vendor/json/LICENSE.MIT
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/licenses/nlohmann_json
+)
 
 # cpp-httplib
 set(HTTPLIB_COMPILE ON CACHE INTERNAL "")
 set(HTTPLIB_BUILD_MODULES ON CACHE INTERNAL "")
 set(HTTPLIB_REQUIRE_OPENSSL ON CACHE INTERNAL "")
+set(HTTPLIB_INSTALL OFF CACHE INTERNAL "")
 add_subdirectory(vendor/cpp-httplib)
+install(FILES vendor/cpp-httplib/LICENSE
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/licenses/httplib
+)
 
 add_subdirectory(simulator)
 add_subdirectory(server)

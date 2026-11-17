@@ -1,3 +1,5 @@
+import srv.parser;
+import srv.diagnostics;
 import LineSimulator;
 import httplib;
 import std;
@@ -15,10 +17,7 @@ void setupServerSettings() {
 }
 
 void setupExecutable() {
-  auto stop{[](int) {
-    g_Srv.stop();
-    std::print("\nServer Stopping.\n");
-  }};
+  auto stop{[](int) { g_Srv.stop(); }};
   std::signal(15, stop); // SIGTERM
   std::signal(2, stop);  // SIGINT
 }
@@ -33,35 +32,43 @@ int main() {
     res.set_content(req.body, "text/plain");
     res.status = 200;
   });
+
   g_Srv.Get("/simulation", [](const auto&, auto& res) {
     res.set_content("no simulation in progress!", "text/plain");
     res.status = 200;
   });
 
-  g_Srv.listen("localhost", 8443);
-
-  /*
-  LS::Runner runner;
-  srv.Post("/simulation", [](const auto& req, auto& res) {
-    if (runner.startRun()) { // atomic CAS, true if claimed, false if not
-      res.set_content(
-          "simulation in progress.\nuse get method to check progress.",
-          "text/plain");
-      res.status = 409;
+  g_Srv.Post("/simulation", [](const auto& req, auto& res) {
+    if (!req.get_header_value("Content-Type").starts_with("application/json")) {
+      res.status = 415;
+      res.set_content(R"({"error":"unsupported_media_type"})",
+                      "application/json");
       return;
     }
 
-    if (auto data{isValidJson(req.body)}; data) {
-      runner.startSimulation(data);
-      res.set_content("request accepted", "text/plain");
-      res.status = 202;
-    } else {
-      res.set_content("invalid JSON", "text/plain");
-      res.status = 400;
+    auto model{Srv::parseRequest(req.body)};
+    if (!model) {
+      res.status =
+          (model.error().kind == Srv::JSONError::Malformed ? 400 : 422);
+
+      res.set_content(Srv::toResponseBody(model.error()), "application/json");
       return;
     }
+
+    // try submit
+    // if (!submitted) {
+    //  res.status = 409;
+    //  res.set_content(R"({"error":"busy"})", "application/json");
+    // }
+
+    res.status = 202;
+    res.set_content("Simulation Started, use GET to check progress.",
+                    "text/plain");
   });
-  */
+
+  std::cout << "\nServer Listening On localhost:8443\n";
+  g_Srv.listen("localhost", 8443);
+  std::cout << "\nServer Stopping.\n";
 
   return 0;
 }
