@@ -42,5 +42,7 @@ dist/
 .eslintcache
 *.tsbuildinfo
 
+.vite/
+
 key.pem
 cert.pem
