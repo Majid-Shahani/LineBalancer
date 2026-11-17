@@ -1,6 +1,10 @@
 export module LineSimulator;
 
+import std;
+
 // LineSimulator namespace
-namespace LS {
+export namespace LS {
+
+struct Model {};
 
 } // namespace LS

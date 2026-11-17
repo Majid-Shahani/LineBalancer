@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 4.4.0)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "f35a9ac6-8463-4d38-8eec-5d6008153e7d")
+
 project(line_balancer LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -41,11 +43,20 @@ endif()
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 set(JSON_Install    OFF CACHE INTERNAL "")
 set(NLOHMANN_JSON_BUILD_MODULES ON CACHE INTERNAL "")
-add_subdirectory(vendor/json EXCLUDE_FROM_ALL)
+add_subdirectory(vendor/json)
+install(FILES vendor/json/LICENSE.MIT
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/licenses/nlohmann_json
+)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(nlohmann_json_modules PRIVATE -Wno-expose-global-module-tu-local)
-endif()
+# cpp-httplib
+set(HTTPLIB_COMPILE ON CACHE INTERNAL "")
+set(HTTPLIB_BUILD_MODULES ON CACHE INTERNAL "")
+set(HTTPLIB_REQUIRE_OPENSSL ON CACHE INTERNAL "")
+set(HTTPLIB_INSTALL OFF CACHE INTERNAL "")
+add_subdirectory(vendor/cpp-httplib)
+install(FILES vendor/cpp-httplib/LICENSE
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/licenses/httplib
+)
 
 add_subdirectory(simulator)
 add_subdirectory(server)

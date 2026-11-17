@@ -12,3 +12,6 @@ Checks: >
   -modernize-use-equals-default,
   -cppcoreguidelines-avoid-magic-numbers,
   -cppcoreguidelines-avoid-const-or-ref-data-members,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -cppcoreguidelines-owning-memory,
+

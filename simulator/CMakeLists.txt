@@ -8,15 +8,11 @@ target_compile_definitions(simulator
   PRIVATE
     ${b_platform}
     ${b_arch}
-    # json parser modules
-    NLOHMANN_JSON_BUILD_MODULES
 )
 
 target_link_libraries(simulator
   PUBLIC
     $<$<CXX_COMPILER_ID:GNU>:stdc++exp>
-  PRIVATE
-    $<BUILD_INTERFACE:nlohmann_json_modules>
 )
 
 target_sources(simulator
