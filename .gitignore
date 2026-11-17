@@ -43,6 +43,6 @@ dist/
 *.tsbuildinfo
 
 .vite/
-
+.run/
 key.pem
 cert.pem
